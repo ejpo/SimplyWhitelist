@@ -1,4 +1,5 @@
 plugins {
+    id("idea")
     kotlin("jvm") version "1.8.21"
     id("xyz.jpenilla.run-paper") version "2.1.0"
 }
@@ -35,4 +36,11 @@ tasks.test {
 
 kotlin {
     jvmToolchain(17)
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }
