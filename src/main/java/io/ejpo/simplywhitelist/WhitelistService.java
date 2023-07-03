@@ -21,6 +21,8 @@ public class WhitelistService implements Listener {
     private final int WHITELIST_CODE_SIZE = 5; //TODO: Move this to configuration
 
     private HashMap<UUID,PendingWhitelistRecord> UUIDToCodeMap;
+    // TODO: Convert this into accepted requests and then iterate over the requests (possibly make this a hashmap?)
+    // Mayebe even make this a HashSet instead of an ArrayList?
     private ArrayList<UUID> acceptedUUIDs;
 
     private final Logger _logger;
@@ -82,7 +84,7 @@ public class WhitelistService implements Listener {
         var playerToWhitelist = UUIDToCodeMap.values().stream().filter(r -> r.whitelistCode().equals(event.getMessage())).findFirst();
         if(playerToWhitelist.isEmpty()){
             _logger.warning("Invalid whitelist code received: " + event.getMessage());
-            var invalidResultEvent = new AsyncWhitelistCodeResultEvent("Invalid Code");
+            var invalidResultEvent = new AsyncWhitelistCodeResultEvent(WhitelistResult.FAILURE, );
             Bukkit.getServer().getPluginManager().callEvent(invalidResultEvent);
 
             return;
