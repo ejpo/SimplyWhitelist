@@ -1,5 +1,6 @@
 package io.ejpo.simplywhitelist.discord;
 
+import io.ejpo.simplywhitelist.events.AsyncWhitelistCodeSentEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
@@ -13,6 +14,7 @@ import net.dv8tion.jda.api.interactions.components.text.TextInput;
 import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
 import net.dv8tion.jda.api.interactions.modals.Modal;
 import net.dv8tion.jda.api.utils.messages.MessageCreateData;
+import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
 import java.util.logging.Logger;
@@ -49,6 +51,8 @@ public class WhitelistDiscordService extends ListenerAdapter {
             event.reply("Code recognised, your account {ACCOUNT HERE} has been whitelisted")
                     .setEphemeral(true)
                     .queue();
+            var codeEvent = new AsyncWhitelistCodeSentEvent(event.getValue("whitelist-string").getAsString());
+            Bukkit.getServer().getPluginManager().callEvent(codeEvent);
         }
     }
 
@@ -74,4 +78,6 @@ public class WhitelistDiscordService extends ListenerAdapter {
             channel.sendMessage(msg).addActionRow(Button.primary("get-whitelisted", "Whitelist me!")).queue();
         }
     }
+
+
 }

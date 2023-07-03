@@ -1,5 +1,5 @@
 name: SimplyWhitelist
-version: 1.0.0
+version: 0.1.0
 main: io.ejpo.simplywhitelist.PluginMain
 description: Runs a small discord bot that allows users to whitelist their Minecraft Accounts through Discord
 author: Ethan O'Donnell
