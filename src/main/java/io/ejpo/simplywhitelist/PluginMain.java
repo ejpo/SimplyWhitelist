@@ -19,7 +19,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 
         this.getLogger().info("Creating Discord Context");
         var discordContext = new DiscordContext(this.getConfig().getConfigurationSection("discord-settings").getString("discord-token"));
-        var bot = new BotMainTask(discordContext);
+        var bot = new BotMainTask(this.getLogger(), discordContext);
 
         this.getLogger().info("Starting Bot Thread");
         bot.runTask(this);

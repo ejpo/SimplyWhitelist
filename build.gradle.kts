@@ -2,6 +2,7 @@ plugins {
     id("idea")
     kotlin("jvm") version "1.8.21"
     id("xyz.jpenilla.run-paper") version "2.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "io.ejpo"
@@ -13,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:5.0.0-beta.11")
+    api("net.dv8tion:JDA:5.0.0-beta.11")
     compileOnly("io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT")
 }
 
